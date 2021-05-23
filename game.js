@@ -20,14 +20,14 @@ const NEW_WELL_EVERY = 5000; // 5 sec
 const NEW_WELL_SPEED = FIELD_SIZE / 4000; // cross the field in ~4s
 
 const entryPoints = [
-	[FIELD_SIZE / 3, -FIELD_SIZE],
-	[FIELD_SIZE * 2 / 3, -FIELD_SIZE],
-	[FIELD_SIZE * 2, FIELD_SIZE / 3],
-	[FIELD_SIZE * 2, FIELD_SIZE * 2 / 3],
-	[FIELD_SIZE * 2 / 3, FIELD_SIZE * 2],
-	[FIELD_SIZE / 3, FIELD_SIZE * 2],
-	[-FIELD_SIZE, FIELD_SIZE * 2 / 3],
-	[-FIELD_SIZE, FIELD_SIZE / 3],
+	[FIELD_SIZE / 6, -FIELD_SIZE / 8],
+	[FIELD_SIZE * 5 / 6, -FIELD_SIZE / 8],
+	[FIELD_SIZE * 1.2, FIELD_SIZE / 6],
+	[FIELD_SIZE * 1.2, FIELD_SIZE * 5 / 6],
+	[FIELD_SIZE * 5 / 6, FIELD_SIZE * 1.2],
+	[FIELD_SIZE / 6, FIELD_SIZE * 1.2],
+	[-FIELD_SIZE / 8, FIELD_SIZE * 5 / 6],
+	[-FIELD_SIZE / 8, FIELD_SIZE / 6],
 ];
 const entryVelocities = [
 	[0, NEW_WELL_SPEED],
@@ -84,6 +84,11 @@ function start() {
 	requestAnimationFrame(gameTick);
 }
 
+function gameOver() {
+	game.over = true;
+	renderEndScreen(game.score);
+}
+
 function gameTick() {
 	if (!game.over) {
 		if (!game.paused) {
@@ -126,12 +131,12 @@ function gameTick() {
 			// end the game if ship health goes to zero or out of bounds
 			if (
 				ship.health < 0
-				|| ship.physics.position[0] < 0
-				|| ship.physics.position[0] > FIELD_SIZE
-				|| ship.physics.position[1] < 0
-				|| ship.physics.position[1] > FIELD_SIZE
+				|| ship.physics.position[0] < FIELD_SIZE * -.25
+				|| ship.physics.position[0] > FIELD_SIZE * 1.25
+				|| ship.physics.position[1] < FIELD_SIZE * -.25
+				|| ship.physics.position[1] > FIELD_SIZE * 1.25
 			) {
-				game.over = true;
+				gameOver();
 				return;
 			}
 

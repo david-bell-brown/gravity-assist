@@ -8,32 +8,32 @@ function addObjectToDOM(obj, index) {
 	if (obj.sprite == "well") {
 		// eg. <use href="#well" data-type="well" data-id="3" />
 		let sprite = document.createElementNS("http://www.w3.org/2000/svg", "use");
-		const debugVelocity = document.createElementNS("http://www.w3.org/2000/svg", "line");
-		const debugAcc = document.createElementNS("http://www.w3.org/2000/svg", "line");
+		// const debugVelocity = document.createElementNS("http://www.w3.org/2000/svg", "line");
+		// const debugAcc = document.createElementNS("http://www.w3.org/2000/svg", "line");
 		sprite.setAttribute('href', "#well");
 		document.getElementById("space").appendChild(sprite);
-		document.getElementById("space").appendChild(debugVelocity);
-		document.getElementById("space").appendChild(debugAcc);
+		// document.getElementById("space").appendChild(debugVelocity);
+		// document.getElementById("space").appendChild(debugAcc);
 		sprite.dataset.type = "well";
 		sprite.dataset.id = index;
 		obj.domRef = sprite;
-		obj.debugVelocityRef = debugVelocity
-		obj.debugAccRef = debugAcc
+		// obj.debugVelocityRef = debugVelocity
+		// obj.debugAccRef = debugAcc
 		renderObject(obj);
 	} else if (obj.sprite == "ship") {
 		// eg. <use href="#ship" data-type="ship" data-id="0" />
 		const sprite = document.createElementNS("http://www.w3.org/2000/svg", "use");
-		const debugVelocity = document.createElementNS("http://www.w3.org/2000/svg", "line");
-		const debugAcc = document.createElementNS("http://www.w3.org/2000/svg", "line");
+		// const debugVelocity = document.createElementNS("http://www.w3.org/2000/svg", "line");
+		// const debugAcc = document.createElementNS("http://www.w3.org/2000/svg", "line");
 		sprite.setAttribute('href', "#ship");
 		document.getElementById("player").appendChild(sprite);
-		document.getElementById("player").appendChild(debugVelocity);
-		document.getElementById("player").appendChild(debugAcc);
+		// document.getElementById("player").appendChild(debugVelocity);
+		// document.getElementById("player").appendChild(debugAcc);
 		sprite.dataset.type = "ship";
 		sprite.dataset.id = index;
 		obj.domRef = sprite;
-		obj.debugVelocityRef = debugVelocity
-		obj.debugAccRef = debugAcc
+		// obj.debugVelocityRef = debugVelocity
+		// obj.debugAccRef = debugAcc
 		renderObject(obj);
 	} else {
 		throw "unrecognized object type";
@@ -88,8 +88,13 @@ function renderObject({domRef, physics, sprite, debugVelocityRef, debugAccRef}) 
 	}
 }
 
+function renderEndScreen(score) {
+	endScreen.style.display = null;
+	document.getElementById("end-screen-score").textContent = Math.floor(score / 1000)
+}
+
 function renderScore(score) {
-	document.getElementById("hud-score").innerHTML = Math.floor(score)
+	document.getElementById("hud-score").innerHTML = Math.floor(score / 1000)
 }
 
 function renderHealth(health) {
@@ -103,6 +108,10 @@ const clampMass = x => Math.max(Math.min(x, MASS_MAX), MASS_MIN)
 gameRoot.addEventListener('click', e => {
 	if(e.target && e.target.id == 'start-button') {
 		gameRoot.removeChild(startScreen)
+		start()
+	}
+	if(e.target && e.target.id == 'restart-button') {
+		endScreen.style.display = 'none';
 		start()
 	}
 })
