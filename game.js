@@ -147,7 +147,7 @@ function gameTick() {
 						position: entryPoints[entryIndex].slice(),
 						velocity: entryVelocities[entryIndex].slice(),
 						acceleration: [0, 0],
-						mass: (MASS_MIN + MASS_MAX) / 2,
+						mass: MASS_MIN,
 					},
 					sprite: "well",
 				};
