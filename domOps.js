@@ -56,6 +56,13 @@ const mouseToMass = x => x / 50
 
 const clampMass = x => Math.max(Math.min(x, MASS_MAX), MASS_MIN)
 
+gameRoot.addEventListener('click', e => {
+	if(e.target && e.target.id == 'hud-start') {
+		e.target.parentElement.removeChild(e.target)
+		start()
+	}
+})
+
 gameRoot.addEventListener('mousedown', e => {
 	input.mouseDown = true
 
