@@ -88,7 +88,7 @@ function gameTick() {
 	if (!game.over) {
 		if (!game.paused) {
 			const now = Date.now();
-			const delta = now - game.lastTick;
+			const delta = (now - game.lastTick) / 10;
 			const deltaSq = Math.pow(delta, 2);
 			// score increases with time!
 			game.score += delta;
@@ -132,41 +132,42 @@ function gameTick() {
 				|| ship.physics.position[1] > FIELD_SIZE
 			) {
 				game.over = true;
-			} else {
+				return;
+			}
 
-				// check for lost wells to destroy
-				// TODO - minimal accel, out of bounds
-				// removeObjectFromDOM(...)
+			// check for lost wells to destroy
+			// TODO - minimal accel, out of bounds
+			// removeObjectFromDOM(...)
 
-				// add new wells
-				if ((game.score / NEW_WELL_EVERY) > (objects.length - 1)) {
-					const entryIndex = objects.length % entryPoints.length;
-					const newWell = {
-						physics: {
-							position: entryPoints[entryIndex].slice(),
-							velocity: entryVelocities[entryIndex].slice(),
-							acceleration: [0, 0],
-							mass: (MASS_MIN + MASS_MAX) / 2,
-						},
-						sprite: "well",
-					};
-					objects.push(newWell);
-					addObjectToDOM(newWell, objects.length - 1);
-				}
+			// add new wells
+			if ((game.score / NEW_WELL_EVERY) > (objects.length - 1)) {
+				const entryIndex = objects.length % entryPoints.length;
+				const newWell = {
+					physics: {
+						position: entryPoints[entryIndex].slice(),
+						velocity: entryVelocities[entryIndex].slice(),
+						acceleration: [0, 0],
+						mass: (MASS_MIN + MASS_MAX) / 2,
+					},
+					sprite: "well",
+				};
+				objects.push(newWell);
+				addObjectToDOM(newWell, objects.length - 1);
+			}
 
-				// recalculate accelerations for next tick
-				for (let object of objects) {
-					object.physics.acceleration = [0, 0, 0];
-				}
-				for (let i = 0; i < objects.length; i++) {
-					for (let j = i + 1; j < objects.length; j++) {
-						acceleration(objects[i], objects[j]);
-					}
+			// recalculate accelerations for next tick
+			for (let object of objects) {
+				object.physics.acceleration = [0, 0, 0];
+			}
+			for (let i = 0; i < objects.length; i++) {
+				for (let j = i + 1; j < objects.length; j++) {
+					acceleration(objects[i], objects[j]);
 				}
 			}
 
 			// update score
 			renderScore(game.score)
+			renderHealth(ship.health)
 
 		}
 		// update sprites, whether paused or not
@@ -195,13 +196,10 @@ function acceleration(obj1, obj2) {
 	let diffY = obj1.physics.position[1] - obj2.physics.position[1];
 	let masslessAccel = G / (Math.pow(diffX, 2) + Math.pow(diffY, 2));
 	let angle = Math.atan(diffY / diffX);
-	if (diffY < 0) {
-		angle += Math.PI;
-	}
 	let xAccel = masslessAccel * Math.cos(angle);
 	let yAccel = masslessAccel * Math.sin(angle);
-	obj2.physics.acceleration[0] += obj1.physics.mass * xAccel;
-	obj2.physics.acceleration[1] += obj1.physics.mass * yAccel;
-	obj1.physics.acceleration[0] += -1 * obj2.physics.mass * xAccel;
-	obj1.physics.acceleration[1] += -1 * obj2.physics.mass * yAccel;
+	obj2.physics.acceleration[0] += -1 * obj1.physics.mass * xAccel;
+	obj2.physics.acceleration[1] += -1 * obj1.physics.mass * yAccel;
+	obj1.physics.acceleration[0] += obj2.physics.mass * xAccel;
+	obj1.physics.acceleration[1] += obj2.physics.mass * yAccel;
 }

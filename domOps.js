@@ -8,20 +8,32 @@ function addObjectToDOM(obj, index) {
 	if (obj.sprite == "well") {
 		// eg. <use href="#well" data-type="well" data-id="3" />
 		let sprite = document.createElementNS("http://www.w3.org/2000/svg", "use");
+		const debugVelocity = document.createElementNS("http://www.w3.org/2000/svg", "line");
+		const debugAcc = document.createElementNS("http://www.w3.org/2000/svg", "line");
 		sprite.setAttribute('href', "#well");
 		document.getElementById("space").appendChild(sprite);
+		document.getElementById("space").appendChild(debugVelocity);
+		document.getElementById("space").appendChild(debugAcc);
 		sprite.dataset.type = "well";
 		sprite.dataset.id = index;
 		obj.domRef = sprite;
+		obj.debugVelocityRef = debugVelocity
+		obj.debugAccRef = debugAcc
 		renderObject(obj);
 	} else if (obj.sprite == "ship") {
 		// eg. <use href="#ship" data-type="ship" data-id="0" />
 		const sprite = document.createElementNS("http://www.w3.org/2000/svg", "use");
+		const debugVelocity = document.createElementNS("http://www.w3.org/2000/svg", "line");
+		const debugAcc = document.createElementNS("http://www.w3.org/2000/svg", "line");
 		sprite.setAttribute('href', "#ship");
 		document.getElementById("player").appendChild(sprite);
+		document.getElementById("player").appendChild(debugVelocity);
+		document.getElementById("player").appendChild(debugAcc);
 		sprite.dataset.type = "ship";
 		sprite.dataset.id = index;
 		obj.domRef = sprite;
+		obj.debugVelocityRef = debugVelocity
+		obj.debugAccRef = debugAcc
 		renderObject(obj);
 	} else {
 		throw "unrecognized object type";
@@ -37,7 +49,7 @@ const getSize = (mass, type) => ({
 	well: mass + 50
 })[type]
 
-function renderObject({domRef, physics, sprite}) {
+function renderObject({domRef, physics, sprite, debugVelocityRef, debugAccRef}) {
 	const size = getSize(physics.mass, sprite)
 	const attributes = {
 		x: physics.position[0] - (size / 2),
@@ -48,10 +60,40 @@ function renderObject({domRef, physics, sprite}) {
 	Object.keys(attributes).forEach(k => {
 		domRef.setAttribute(k, attributes[k])
 	})
+	if (debugVelocityRef) {
+		const debugAttributes = {
+			x1: physics.position[0],
+			y1: physics.position[1],
+			x2: physics.position[0] + (physics.velocity[0] * 50),
+			y2: physics.position[1] + (physics.velocity[1] * 50),
+			stroke: "red",
+			'stroke-width': 5
+		}
+		Object.keys(debugAttributes).forEach(k => {
+			debugVelocityRef.setAttribute(k, debugAttributes[k])
+		})
+	}
+	if (debugAccRef) {
+		const debugAttributes = {
+			x1: physics.position[0],
+			y1: physics.position[1],
+			x2: physics.position[0] + (physics.acceleration[0] * 1000),
+			y2: physics.position[1] + (physics.acceleration[1] * 1000),
+			stroke: "blue",
+			'stroke-width': 5
+		}
+		Object.keys(debugAttributes).forEach(k => {
+			debugAccRef.setAttribute(k, debugAttributes[k])
+		})
+	}
 }
 
 function renderScore(score) {
-	document.getElementById("hud-score").innerHTML = score
+	document.getElementById("hud-score").innerHTML = Math.floor(score)
+}
+
+function renderHealth(health) {
+	document.getElementById("hud-health").setAttribute('width', (health / MAX_HEALTH) * FIELD_SIZE)
 }
 
 const mouseToMass = x => x / 50
