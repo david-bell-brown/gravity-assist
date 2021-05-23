@@ -102,7 +102,7 @@ function gameTick() {
 				];
 			}
 			// update ship health
-			const ship = object[0];
+			const ship = objects[0];
 			ship.health += (
 				HEALTH_ACCEL_FACTOR * Math.sqrt(
 					Math.pow(ship.physics.acceleration[0], 2)
