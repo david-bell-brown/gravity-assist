@@ -51,7 +51,7 @@ function start() {
 			position: [0, FIELD_SIZE / 3],
 			velocity: [1, 0], // [x, y]
 			acceleration: [0, 0], // [x, y]
-			mass: 1,
+			mass: SHIP_MASS,
 		},
 		sprite: "ship" , // DOM ID ref
 		health: MAX_HEALTH,
