@@ -24,6 +24,7 @@ const MASS_MAX = 100;
 const SHIP_MASS = 1;
 const G = 1;
 const NEW_WELL_EVERY = 5000; // 5 sec
+const NEW_WELL_SPEED = FIELD_SIZE / 3000; // cross the field in ~3s
 
 const entryPoints = [
 	[-FIELD_SIZE, -FIELD_SIZE],
@@ -36,6 +37,14 @@ const entryPoints = [
 	[-FIELD_SIZE, FIELD_SIZE/2],
 ];
 const entryVelocities = [
+	[NEW_WELL_SPEED, NEW_WELL_SPEED],
+	[0, NEW_WELL_SPEED],
+	[-NEW_WELL_SPEED, NEW_WELL_SPEED],
+	[-NEW_WELL_SPEED, 0],
+	[-NEW_WELL_SPEED, -NEW_WELL_SPEED],
+	[0, -NEW_WELL_SPEED],
+	[NEW_WELL_SPEED, -NEW_WELL_SPEED],
+	[NEW_WELL_SPEED, 0],
 ];
 
 
