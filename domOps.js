@@ -5,22 +5,22 @@ let input = {
 function addObjectToDOM(obj, index) {
 	if (obj.sprite == "well") {
 		// eg. <use href="#well" data-type="well" data-id="3" />
-		let sprite = document.createElement("use");
+		let sprite = document.createElementNS("http://www.w3.org/2000/svg", "use");
 		sprite.setAttribute('href', "#well");
+		document.getElementById("space").appendChild(sprite);
 		sprite.dataset.type = "well";
 		sprite.dataset.id = index;
-		document.getElementById("space").appendChild(sprite);
 		obj.domRef = sprite;
-		// renderObject(obj);
+		renderObject(obj);
 	} else if (obj.sprite == "ship") {
 		// eg. <use href="#ship" data-type="ship" data-id="0" />
-		const sprite = document.createElement("use");
+		const sprite = document.createElementNS("http://www.w3.org/2000/svg", "use");
 		sprite.setAttribute('href', "#ship");
+		document.getElementById("player").appendChild(sprite);
 		sprite.dataset.type = "ship";
 		sprite.dataset.id = index;
-		document.getElementById("player").appendChild(sprite);
 		obj.domRef = sprite;
-		//  renderObject(obj);
+		renderObject(obj);
 	} else {
 		throw "unrecognized object type";
 	}
