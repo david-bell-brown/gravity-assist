@@ -27,36 +27,96 @@
   <body>
     <svg id="root" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
+        <style>
+          @keyframes rotate {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(360deg);
+            }
+          }
+          #well {
+            overflow: visible;
+          }
+          .well-4,
+          .well-3,
+          .well-2,
+          .well-1 {
+            transform-origin: center center;
+          }
+          .well-4 {
+            animation: rotate 12s linear infinite;
+          }
+          .well-3 {
+            animation: rotate 8s linear infinite;
+          }
+          .well-2 {
+            animation: rotate 6s linear infinite;
+          }
+          #ship {
+            overflow: visible;
+          }
+          .ship-1 {
+            animation: rotate 6s linear infinite;
+            transform-origin: center center;
+          }
+        </style>
         <symbol id="ship" width="50" height="50" viewBox="0 0 100 100">
+          <g class="ship-1">
+            <rect x="0" y="0" width="100" height="100" style="fill:none;"/>
+            <path d="M30,10L10,30L10,50L30,80L70,80L90,50L90,30L70,10L30,10Z" style="fill:rgb(218,218,218);"/>
+            <path d="M0,70L0,90L20,100L80,100L100,90L100,70L70,60L30,60L0,70Z" style="fill:rgb(35,0,155);"/>
+            <path d="M10,30L20,0L20,20L10,30Z" style="fill:rgb(175,0,0);"/>
+            <path d="M90,30L80,20L80,0L90,30Z" style="fill:rgb(175,0,0);"/>
+            <path d="M100,0L80,0L80,10L100,0Z" style="fill:rgb(255,0,0);"/>
+            <path d="M1,0L20,10L20,0L1,0Z" style="fill:rgb(255,0,0);"/>
+            <path d="M80.909,63.636L70,80L30,80L19.091,63.636L30,60L70,60L80.909,63.636Z" style="fill:rgb(162,157,237);"/>
+            <path d="M40,65L35,70L35,80L65,80L65,70L60,65L40,65Z" style="fill:rgb(174,1,186);"/>
+            <path d="M40,65L30,45L30,35L40,25L60,25L70,35L70,45L60,65L55,65L55,70L45,70L45,65L40,65Z" style="fill:rgb(0,237,0);"/>
+            <path d="M40,45L40,35L45,30L45,45L40,45Z" style="fill:white;"/>
+            <path d="M55,30L55,45L60,45L60,35L55,30Z" style="fill:white;"/>
+            <path d="M45,60L50,55L55,60L55,55L45,55L45,60Z" style="fill:white;"/>
+            <path d="M20,30L30,15L35,15L25,30L20,30Z" style="fill:white;"/>
+            <path d="M30,30L40,15L45,15L35,30L30,30Z" style="fill:white;"/>
+            <path d="M15,95L20,100L15,100L15,95Z" style="fill:rgb(255,0,0);"/>
+            <path d="M35,95L40,100L35,100L35,95Z" style="fill:rgb(255,0,0);"/>
+            <path d="M60,100L65,95L65,100L60,100Z" style="fill:rgb(255,0,0);"/>
+            <path d="M80,100L85,95L85,100L80,100Z" style="fill:rgb(255,0,0);"/>
+            <path d="M95,95L95,90L100,90L95,95Z" style="fill:rgb(255,0,0);"/>
+            <path d="M100,75L100,80L95,80L100,75Z" style="fill:rgb(255,0,0);"/>
+            <path d="M95,65L95,70L90,70L95,65Z" style="fill:rgb(255,0,0);"/>
+            <path d="M5,70L5,65L10,70L5,70Z" style="fill:rgb(255,0,0);"/>
+            <path d="M0,80L0,75L5,80L0,80Z" style="fill:rgb(255,0,0);"/>
+            <path d="M5,90L5,95L0,90L5,90Z" style="fill:rgb(255,0,0);"/>
+          </g>
+        </symbol>
+        <symbol id="well" width="100" height="100" viewBox="0 0 100 100">
           <rect x="0" y="0" width="100" height="100" style="fill:none;"/>
-          <path d="M30,10L10,30L10,50L30,80L70,80L90,50L90,30L70,10L30,10Z" style="fill:rgb(218,218,218);"/>
-          <path d="M0,70L0,90L20,100L80,100L100,90L100,70L70,60L30,60L0,70Z" style="fill:rgb(35,0,155);"/>
-          <path d="M10,30L20,0L20,20L10,30Z" style="fill:rgb(175,0,0);"/>
-          <path d="M90,30L80,20L80,0L90,30Z" style="fill:rgb(175,0,0);"/>
-          <path d="M100,0L80,0L80,10L100,0Z" style="fill:rgb(255,0,0);"/>
-          <path d="M1,0L20,10L20,0L1,0Z" style="fill:rgb(255,0,0);"/>
-          <path d="M80.909,63.636L70,80L30,80L19.091,63.636L30,60L70,60L80.909,63.636Z" style="fill:rgb(162,157,237);"/>
-          <path d="M40,65L35,70L35,80L65,80L65,70L60,65L40,65Z" style="fill:rgb(174,1,186);"/>
-          <path d="M40,65L30,45L30,35L40,25L60,25L70,35L70,45L60,65L55,65L55,70L45,70L45,65L40,65Z" style="fill:rgb(0,237,0);"/>
-          <path d="M40,45L40,35L45,30L45,45L40,45Z" style="fill:white;"/>
-          <path d="M55,30L55,45L60,45L60,35L55,30Z" style="fill:white;"/>
-          <path d="M45,60L50,55L55,60L55,55L45,55L45,60Z" style="fill:white;"/>
-          <path d="M20,30L30,15L35,15L25,30L20,30Z" style="fill:white;"/>
-          <path d="M30,30L40,15L45,15L35,30L30,30Z" style="fill:white;"/>
-          <path d="M15,95L20,100L15,100L15,95Z" style="fill:rgb(255,0,0);"/>
-          <path d="M35,95L40,100L35,100L35,95Z" style="fill:rgb(255,0,0);"/>
-          <path d="M60,100L65,95L65,100L60,100Z" style="fill:rgb(255,0,0);"/>
-          <path d="M80,100L85,95L85,100L80,100Z" style="fill:rgb(255,0,0);"/>
-          <path d="M95,95L95,90L100,90L95,95Z" style="fill:rgb(255,0,0);"/>
-          <path d="M100,75L100,80L95,80L100,75Z" style="fill:rgb(255,0,0);"/>
-          <path d="M95,65L95,70L90,70L95,65Z" style="fill:rgb(255,0,0);"/>
-          <path d="M5,70L5,65L10,70L5,70Z" style="fill:rgb(255,0,0);"/>
-          <path d="M0,80L0,75L5,80L0,80Z" style="fill:rgb(255,0,0);"/>
-          <path d="M5,90L5,95L0,90L5,90Z" style="fill:rgb(255,0,0);"/>
+          <g class="well-4">
+            <path d="M15,90L20,100L15,95L15,90Z" style="fill:rgb(174,1,186);"/>
+            <path d="M10,80L5,90L10,85L10,80Z" style="fill:rgb(174,1,186);"/>
+            <path d="M0,55L5,45L0,50L0,55Z" style="fill:rgb(174,1,186);"/>
+            <path d="M95,50L100,40L100,45L95,50Z" style="fill:rgb(174,1,186);"/>
+            <path d="M15,10L20,5L10,10L15,10Z" style="fill:rgb(174,1,186);"/>
+            <path d="M90,20L95,10L95,15L90,20Z" style="fill:rgb(174,1,186);"/>
+            <path d="M75,0L80,10L75,5L75,0Z" style="fill:rgb(174,1,186);"/>
+            <path d="M95,80L100,70L100,75L95,80Z" style="fill:rgb(174,1,186);"/>
+            <path d="M10,20L5,20L5,25L10,20Z" style="fill:rgb(174,1,186);"/>
+            <path d="M60,5L50,0L55,0L60,5Z" style="fill:rgb(174,1,186);"/>
+            <path d="M45,95L50,100L40,95L45,95" style="fill:rgb(174,1,186);"/>
+            <path d="M80,95L85,95L90,90L80,95Z" style="fill:rgb(174,1,186);"/>
+          </g>
+          <path class="well-3" d="M5,55L10,50L5,75L10,70L20,85L20,80L30,95L30,90L55,95L50,90L75,95L70,90L85,80L80,80L95,70L90,70L95,55L90,60L95,30L90,35L80,15L80,20L65,5L65,10L45,5L50,10L25,5L30,10L15,20L20,20L5,35L10,35L5,55Z" style="fill:rgb(174,1,186);"/>
+          <path class="well-2" d="M20,65L25,45L20,45L30,35L20,30L40,30L35,20L55,25L55,15L65,35L70,25L70,45L80,40L70,55L80,55L65,65L75,70L55,75L60,80L40,70L40,80L30,65L25,80L25,60L20,65Z" style="fill:rgb(123,0,138);"/>
+          <path class="well-1" d="M45,45L35,50L45,55L50,65L55,55L65,50L55,45L50,35L45,45Z" style="fill:rgb(63,0,75);"/>
         </symbol>
       </defs>
       <rect stroke="#ffffff" stroke-width="5" x="0" y="0" width="1000" height="1000"/>
       <g id="space">
+        <use href="#well" x="700" y="700"/>
+      </g>
+      <g id="player">
         <use href="#ship" x="500" y="500"/>
       </g>
     </svg>
