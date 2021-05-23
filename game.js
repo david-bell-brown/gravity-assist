@@ -88,7 +88,7 @@ function gameTick() {
 	if (!game.over) {
 		if (!game.paused) {
 			const now = Date.now();
-			const delta = (now - game.lastTick) / 10;
+			const delta = now - game.lastTick;
 			const deltaSq = Math.pow(delta, 2);
 			// score increases with time!
 			game.score += delta;
