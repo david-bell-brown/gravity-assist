@@ -52,8 +52,8 @@ function start() {
 	// ship start
 	objects[0] = {
 		physics: {
-			position: [0, FIELD_SIZE / 3],
-			velocity: [1, 0], // [x, y]
+			position: [0, FIELD_SIZE * 2 / 3],
+			velocity: [0.05, -0.2], // [x, y]
 			acceleration: [0, 0], // [x, y]
 			mass: SHIP_MASS,
 		},
