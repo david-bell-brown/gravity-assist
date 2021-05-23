@@ -15,7 +15,7 @@ const FIELD_SIZE = 1000;
 const MASS_MIN = 3;
 const MASS_MAX = 100;
 const SHIP_MASS = 1;
-const G = 1;
+const G = 6;
 const NEW_WELL_EVERY = 5000; // 5 sec
 const NEW_WELL_SPEED = FIELD_SIZE / 3000; // cross the field in ~3s
 
@@ -47,6 +47,8 @@ function start() {
 	}
 	objects = [];
 	game.paused = false;
+	game.over = false;
+	game.score = 0;
 	// ship start
 	objects[0] = {
 		physics: {
@@ -66,7 +68,7 @@ function start() {
 			position: [FIELD_SIZE/2, FIELD_SIZE/2],
 			velocity: [0, 0],
 			acceleration: [0, 0],
-			mass: MASS_MIN,
+			mass: (MASS_MIN + MASS_MAX)/2,
 		},
 		sprite: "well",
 		domRef: null,
@@ -161,11 +163,10 @@ function gameTick() {
 			// update score
 			renderScore(game.score)
 
-		} else { // paused
-			// update sprites for changes to mass
-			for (let object of objects) {
-				renderObject(object);
-			}
+		}
+		// update sprites, whether paused or not
+		for (let object of objects) {
+			renderObject(object);
 		}
 		requestAnimationFrame(gameTick);
 	}
@@ -191,8 +192,8 @@ function acceleration(obj1, obj2) {
 	let angle = Math.atan(diffY / diffX);
 	let xAccel = masslessAccel * Math.cos(angle);
 	let yAccel = masslessAccel * Math.sin(angle);
-	obj2.physics.acceleration[0] += obj1.physics.mass * xAccel;
-	obj2.physics.acceleration[1] += obj1.physics.mass * yAccel;
-	obj1.physics.acceleration[0] += -1 * obj2.physics.mass * xAccel;
-	obj1.physics.acceleration[1] += -1 * obj2.physics.mass * yAccel;
+	obj2.physics.acceleration[0] += -1 * obj1.physics.mass * xAccel;
+	obj2.physics.acceleration[1] += -1 * obj1.physics.mass * yAccel;
+	obj1.physics.acceleration[0] += obj2.physics.mass * xAccel;
+	obj1.physics.acceleration[1] += obj2.physics.mass * yAccel;
 }
