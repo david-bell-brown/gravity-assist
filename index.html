@@ -114,11 +114,15 @@
       </defs>
       <rect stroke="#ffffff" stroke-width="5" x="0" y="0" width="1000" height="1000"/>
       <g id="space">
-        <use href="#well" x="700" y="700"/>
+        <use href="#well" x="700" y="700" data-type="well" data-id="1"/>
       </g>
       <g id="player">
         <use href="#ship" x="500" y="500"/>
       </g>
+      <g id="hud">
+        <text id="hud-debug" x="20" y="100" style="font-size: 50px" fill="#fff">hi</text>
+      </g>
     </svg>
+    <script src="/game.js"></script>
   </body>
 </html>

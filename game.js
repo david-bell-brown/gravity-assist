@@ -1,6 +1,10 @@
+const gameRoot = document.getElementById('root');
+
 let gameStart = null; // Date
 let objects = [];
 let paused = false;
+let input = {
+}
 
 const HEALTH_DECAY_PER_SEC = 1;
 const HEALTH_ACCEL_FACTOR = 1;
@@ -55,3 +59,37 @@ function acceleration(obj1, obj2) {
 	obj1.physics.acceleration[0] += -1 * obj2.physics.mass * xAccel;
 	obj1.physics.acceleration[1] += -1 * obj2.physics.mass * yAccel;
 }
+
+const mouseToMass = x => x / 20
+
+const clampMass = x => Math.max(Math.min(x, MASS_MAX), MASS_MIN)
+
+gameRoot.addEventListener('mousedown', e => {
+	input.mouseDown = true
+
+	if(e.target && e.target.dataset.type === 'well') {
+		input.target = e.target.dataset.id
+		// input.targetMass = objects[input.target].physics.mass
+		input.targetMass = 10
+		input.mouseStart = [e.clientX, e.clientY]
+		console.log(input.target)
+	}
+})
+
+gameRoot.addEventListener('mousemove', e => {
+	if(input.mouseDown && input.target) {
+		let mouseDelta = [e.clientX - input.mouseStart[0], e.clientY - input.mouseStart[1]]
+		let magnitude = 0
+		if(Math.abs(mouseDelta[0]) > Math.abs(mouseDelta[1])) {
+			magnitude = mouseDelta[0]
+		} else {
+			magnitude = mouseDelta[1]
+		}
+		// objects[target].physics.mass = clampMass(magnitude + input.targetMass)
+		console.log(clampMass(magnitude + input.targetMass))
+	}
+})
+
+gameRoot.addEventListener('mouseup', e => {
+	input = {}
+})
