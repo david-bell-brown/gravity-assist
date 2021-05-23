@@ -162,6 +162,16 @@ function gameTick() {
 	}
 }
 
+function pause() {
+	game.paused = true;
+}
+
+function unpause() {
+	game.lastTick = Date.now();
+	game.paused = false;
+	requestAnimationFrame(gameTick);
+}
+
 // F = ma
 // F = mMG/d^2
 // a = F / m = MG/d^2
