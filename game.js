@@ -117,9 +117,17 @@ function gameTick() {
 				ship.health = MAX_HEALTH;
 			}
 
-			// check for game end
-			// TODO - ship.health < 0, out of bounds
-			// game.over = true
+			// end the game if ship health goes to zero or out of bounds
+			if (
+				ship.health < 0
+				|| ship.physics.position[0] < 0
+				|| ship.physics.position[0] > FIELD_SIZE
+				|| ship.physics.position[1] < 0
+				|| ship.physics.position[1] > FIELD_SIZE
+			) {
+				game.over = true;
+				return;
+			}
 
 			// check for lost wells to destroy
 			// TODO - minimal accel, out of bounds
