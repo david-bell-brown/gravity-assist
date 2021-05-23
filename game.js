@@ -7,17 +7,17 @@ const game = {
 	over: false,
 };
 
-const HEALTH_DECAY_FACTOR = 0.1;
-const HEALTH_ACCEL_FACTOR = 1;
+const HEALTH_DECAY_FACTOR = 0.01;
+const HEALTH_ACCEL_FACTOR = 60;
 const MAX_HEALTH = 100;
 const MIN_HEALTH = 0;
 const FIELD_SIZE = 1000;
-const MASS_MIN = 3;
+const MASS_MIN = 20;
 const MASS_MAX = 100;
 const SHIP_MASS = 1;
-const G = 6;
+const G = 0.4;
 const NEW_WELL_EVERY = 5000; // 5 sec
-const NEW_WELL_SPEED = FIELD_SIZE / 3000; // cross the field in ~3s
+const NEW_WELL_SPEED = FIELD_SIZE / 4000; // cross the field in ~4s
 
 const entryPoints = [
 	[FIELD_SIZE / 3, -FIELD_SIZE],
