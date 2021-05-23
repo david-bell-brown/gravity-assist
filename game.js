@@ -179,7 +179,7 @@ function acceleration(obj1, obj2) {
 	obj1.physics.acceleration[1] += -1 * obj2.physics.mass * yAccel;
 }
 
-const mouseToMass = x => x / 20
+const mouseToMass = x => x / 50
 
 const clampMass = x => Math.max(Math.min(x, MASS_MAX), MASS_MIN)
 
@@ -189,7 +189,7 @@ gameRoot.addEventListener('mousedown', e => {
 	if(e.target && e.target.dataset.type === 'well') {
 		input.target = e.target.dataset.id
 		// input.targetMass = objects[input.target].physics.mass
-		input.targetMass = 10
+		input.targetMass = 50
 		input.mouseStart = [e.clientX, e.clientY]
 		console.log(input.target)
 	}
@@ -202,10 +202,10 @@ gameRoot.addEventListener('mousemove', e => {
 		if(Math.abs(mouseDelta[0]) > Math.abs(mouseDelta[1])) {
 			magnitude = mouseDelta[0]
 		} else {
-			magnitude = mouseDelta[1]
+			magnitude = mouseDelta[1] * -1
 		}
 		// objects[target].physics.mass = clampMass(magnitude + input.targetMass)
-		console.log(clampMass(magnitude + input.targetMass))
+		document.getElementById("hud-debug").innerHTML = clampMass(magnitude + input.targetMass)
 	}
 })
 
