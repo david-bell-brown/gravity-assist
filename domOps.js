@@ -2,14 +2,32 @@ const gameRoot = document.getElementById('root');
 let input = {
 }
 
-
-function addObjectToDOM(obj) {
-	// TODO
-	// build sprite and hold ref in obj.domRef
+function addObjectToDOM(obj, index) {
+	if (obj.sprite == "well") {
+		// eg. <use href="#well" data-type="well" data-id="3" />
+		let sprite = document.createElement("use");
+		sprite.setAttribute('href', "#well");
+		sprite.dataset.type = "well";
+		sprite.dataset.id = index;
+		document.getElementById("space").appendChild(sprite);
+		obj.domRef = sprite;
+		// renderObject(obj);
+	} else if (obj.sprite == "ship") {
+		// eg. <use href="#ship" data-type="ship" data-id="0" />
+		const sprite = document.createElement("use");
+		sprite.setAttribute('href', "#ship");
+		sprite.dataset.type = "ship";
+		sprite.dataset.id = index;
+		document.getElementById("player").appendChild(sprite);
+		obj.domRef = sprite;
+		//  renderObject(obj);
+	} else {
+		throw "unrecognized object type";
+	}
 }
 
 function removeObjectFromDOM(obj) {
-	// TODO
+	obj.domRef.parentElement.removeChild(obj.domRef);
 }
 
 const getSize = (mass, type) => ({

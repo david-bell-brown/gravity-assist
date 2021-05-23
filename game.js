@@ -59,7 +59,7 @@ function start() {
 		domRef: null, // will be set by addObjectToDOM
 		health: MAX_HEALTH,
 	};
-	addObjectToDOM(objects[0]);
+	addObjectToDOM(objects[0], 0);
 	// first mass
 	objects[1] = {
 		physics: {
@@ -71,7 +71,7 @@ function start() {
 		sprite: "well",
 		domRef: null,
 	};
-	addObjectToDOM(objects[1]);
+	addObjectToDOM(objects[1], 1);
 
 	game.lastTick = Date.now();
 	requestAnimationFrame(gameTick);
@@ -138,7 +138,7 @@ function gameTick() {
 					sprite: "well",
 				};
 				objects.push(newWell);
-				addObjectToDOM(newWell);
+				addObjectToDOM(newWell, objects.length - 1);
 			}
 
 			// recalculate accelerations for next tick
