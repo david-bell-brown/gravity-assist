@@ -127,36 +127,36 @@ function gameTick() {
 				|| ship.physics.position[1] > FIELD_SIZE
 			) {
 				game.over = true;
-				return;
-			}
+			} else {
 
-			// check for lost wells to destroy
-			// TODO - minimal accel, out of bounds
-			// removeObjectFromDOM(...)
+				// check for lost wells to destroy
+				// TODO - minimal accel, out of bounds
+				// removeObjectFromDOM(...)
 
-			// add new wells
-			if ((game.score / NEW_WELL_EVERY) > (objects.length - 1)) {
-				const entryIndex = objects.length % entryPoints.length;
-				const newWell = {
-					physics: {
-						position: entryPoints[entryIndex].slice(),
-						velocity: entryVelocities[entryIndex].slice(),
-						acceleration: [0, 0],
-						mass: (MASS_MIN + MASS_MAX) / 2,
-					},
-					sprite: "well",
-				};
-				objects.push(newWell);
-				addObjectToDOM(newWell, objects.length - 1);
-			}
+				// add new wells
+				if ((game.score / NEW_WELL_EVERY) > (objects.length - 1)) {
+					const entryIndex = objects.length % entryPoints.length;
+					const newWell = {
+						physics: {
+							position: entryPoints[entryIndex].slice(),
+							velocity: entryVelocities[entryIndex].slice(),
+							acceleration: [0, 0],
+							mass: (MASS_MIN + MASS_MAX) / 2,
+						},
+						sprite: "well",
+					};
+					objects.push(newWell);
+					addObjectToDOM(newWell, objects.length - 1);
+				}
 
-			// recalculate accelerations for next tick
-			for (let object of objects) {
-				object.physics.acceleration = [0, 0, 0];
-			}
-			for (let i = 0; i < objects.length; i++) {
-				for (let j = i + 1; j < objects.length; j++) {
-					acceleration(objects[i], objects[j]);
+				// recalculate accelerations for next tick
+				for (let object of objects) {
+					object.physics.acceleration = [0, 0, 0];
+				}
+				for (let i = 0; i < objects.length; i++) {
+					for (let j = i + 1; j < objects.length; j++) {
+						acceleration(objects[i], objects[j]);
+					}
 				}
 			}
 
