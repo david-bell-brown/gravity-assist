@@ -46,7 +46,7 @@ function removeObjectFromDOM(obj) {
 
 const getSize = (mass, type) => ({
 	ship: 50,
-	well: mass + 50
+	well: mass / (MASS_MAX - MASS_MIN) * 120  + 20
 })[type]
 
 function renderObject({domRef, physics, sprite, debugVelocityRef, debugAccRef}) {
