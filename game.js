@@ -153,6 +153,9 @@ function gameTick() {
 			for (let object of objects) {
 				renderObject(object);
 			}
+
+			// update score
+			renderScore(game.score)
 		}
 	}
 }

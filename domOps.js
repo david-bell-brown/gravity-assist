@@ -30,6 +30,10 @@ function renderObject({domRef, physics, sprite}) {
 	})
 }
 
+function renderScore(score) {
+	document.getElementById("hud-score").innerHTML = score
+}
+
 const mouseToMass = x => x / 50
 
 const clampMass = x => Math.max(Math.min(x, MASS_MAX), MASS_MIN)
@@ -38,9 +42,10 @@ gameRoot.addEventListener('mousedown', e => {
 	input.mouseDown = true
 
 	if(e.target && e.target.dataset.type === 'well') {
+		game.paused = true
 		input.target = e.target.dataset.id
-		// input.targetMass = objects[input.target].physics.mass
-		input.targetMass = 50
+		input.targetMass = objects[input.target].physics.mass
+		// input.targetMass = 50
 		input.mouseStart = [e.clientX, e.clientY]
 		console.log(input.target)
 	}
@@ -55,11 +60,12 @@ gameRoot.addEventListener('mousemove', e => {
 		} else {
 			magnitude = mouseDelta[1] * -1
 		}
-		// objects[target].physics.mass = clampMass(magnitude + input.targetMass)
-		document.getElementById("hud-score").innerHTML = clampMass(magnitude + input.targetMass)
+		objects[target].physics.mass = clampMass(magnitude + input.targetMass)
+		// document.getElementById("hud-score").innerHTML = clampMass(magnitude + input.targetMass)
 	}
 })
 
 gameRoot.addEventListener('mouseup', e => {
 	input = {}
+	game.paused = false
 })
