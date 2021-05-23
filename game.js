@@ -192,10 +192,13 @@ function unpause() {
 // F = mMG/d^2
 // a = F / m = MG/d^2
 function acceleration(obj1, obj2) {
-	let diffX = obj1.physics.position[0] - obj2.physics.position[0];
-	let diffY = obj1.physics.position[1] - obj2.physics.position[1];
+	let diffX = obj2.physics.position[0] - obj1.physics.position[0];
+	let diffY = obj2.physics.position[1] - obj1.physics.position[1];
 	let masslessAccel = G / (Math.pow(diffX, 2) + Math.pow(diffY, 2));
 	let angle = Math.atan(diffY / diffX);
+	if (diffX < 0) {
+		angle += Math.PI;
+	}
 	let xAccel = masslessAccel * Math.cos(angle);
 	let yAccel = masslessAccel * Math.sin(angle);
 	obj2.physics.acceleration[0] += -1 * obj1.physics.mass * xAccel;
