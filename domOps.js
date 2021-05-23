@@ -38,7 +38,7 @@ gameRoot.addEventListener('mousemove', e => {
 			magnitude = mouseDelta[1] * -1
 		}
 		// objects[target].physics.mass = clampMass(magnitude + input.targetMass)
-		document.getElementById("hud-debug").innerHTML = clampMass(magnitude + input.targetMass)
+		document.getElementById("hud-score").innerHTML = clampMass(magnitude + input.targetMass)
 	}
 })
 

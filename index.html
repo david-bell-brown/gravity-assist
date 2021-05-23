@@ -54,12 +54,17 @@
           .well-2 {
             animation: rotate 6s linear infinite;
           }
+
           #ship {
             overflow: visible;
           }
           .ship-1 {
             animation: rotate 6s linear infinite;
             transform-origin: center center;
+          }
+
+          #hud {
+            pointer-events: none;
           }
         </style>
         <symbol id="ship" width="50" height="50" viewBox="0 0 100 100">
@@ -120,7 +125,7 @@
         <use href="#ship" x="500" y="500"/>
       </g>
       <g id="hud">
-        <text id="hud-debug" x="20" y="100" style="font-size: 50px" fill="#fff">hi</text>
+        <text id="hud-score" x="500" y="650" style="font-size:400px" fill="rgba(255,255,255,0.3)" text-anchor="middle">30</text>
       </g>
     </svg>
     <script src="/game.js"></script>
