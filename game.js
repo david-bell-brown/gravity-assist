@@ -56,6 +56,7 @@ function start() {
 			mass: SHIP_MASS,
 		},
 		sprite: "ship" , // DOM ID ref
+		domRef: null, // will be set by addObjectToDOM
 		health: MAX_HEALTH,
 	};
 	addObjectToDOM(objects[0]);
@@ -68,6 +69,7 @@ function start() {
 			mass: MASS_MIN,
 		},
 		sprite: "well",
+		domRef: null,
 	};
 	addObjectToDOM(objects[1]);
 
