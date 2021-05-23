@@ -25,9 +25,40 @@
     </style>
   </head>
   <body>
-    <svg id="root" viewBox="0 0 1000 1000">
+    <svg id="root" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <symbol id="ship" width="50" height="50" viewBox="0 0 100 100">
+          <rect x="0" y="0" width="100" height="100" style="fill:none;"/>
+          <path d="M30,10L10,30L10,50L30,80L70,80L90,50L90,30L70,10L30,10Z" style="fill:rgb(218,218,218);"/>
+          <path d="M0,70L0,90L20,100L80,100L100,90L100,70L70,60L30,60L0,70Z" style="fill:rgb(35,0,155);"/>
+          <path d="M10,30L20,0L20,20L10,30Z" style="fill:rgb(175,0,0);"/>
+          <path d="M90,30L80,20L80,0L90,30Z" style="fill:rgb(175,0,0);"/>
+          <path d="M100,0L80,0L80,10L100,0Z" style="fill:rgb(255,0,0);"/>
+          <path d="M1,0L20,10L20,0L1,0Z" style="fill:rgb(255,0,0);"/>
+          <path d="M80.909,63.636L70,80L30,80L19.091,63.636L30,60L70,60L80.909,63.636Z" style="fill:rgb(162,157,237);"/>
+          <path d="M40,65L35,70L35,80L65,80L65,70L60,65L40,65Z" style="fill:rgb(174,1,186);"/>
+          <path d="M40,65L30,45L30,35L40,25L60,25L70,35L70,45L60,65L55,65L55,70L45,70L45,65L40,65Z" style="fill:rgb(0,237,0);"/>
+          <path d="M40,45L40,35L45,30L45,45L40,45Z" style="fill:white;"/>
+          <path d="M55,30L55,45L60,45L60,35L55,30Z" style="fill:white;"/>
+          <path d="M45,60L50,55L55,60L55,55L45,55L45,60Z" style="fill:white;"/>
+          <path d="M20,30L30,15L35,15L25,30L20,30Z" style="fill:white;"/>
+          <path d="M30,30L40,15L45,15L35,30L30,30Z" style="fill:white;"/>
+          <path d="M15,95L20,100L15,100L15,95Z" style="fill:rgb(255,0,0);"/>
+          <path d="M35,95L40,100L35,100L35,95Z" style="fill:rgb(255,0,0);"/>
+          <path d="M60,100L65,95L65,100L60,100Z" style="fill:rgb(255,0,0);"/>
+          <path d="M80,100L85,95L85,100L80,100Z" style="fill:rgb(255,0,0);"/>
+          <path d="M95,95L95,90L100,90L95,95Z" style="fill:rgb(255,0,0);"/>
+          <path d="M100,75L100,80L95,80L100,75Z" style="fill:rgb(255,0,0);"/>
+          <path d="M95,65L95,70L90,70L95,65Z" style="fill:rgb(255,0,0);"/>
+          <path d="M5,70L5,65L10,70L5,70Z" style="fill:rgb(255,0,0);"/>
+          <path d="M0,80L0,75L5,80L0,80Z" style="fill:rgb(255,0,0);"/>
+          <path d="M5,90L5,95L0,90L5,90Z" style="fill:rgb(255,0,0);"/>
+        </symbol>
+      </defs>
       <rect stroke="#ffffff" stroke-width="5" x="0" y="0" width="1000" height="1000"/>
-      <circle fill="#ffffff" cx="500" cy="500" r="200"/>
+      <g id="space">
+        <use href="#ship" x="500" y="500"/>
+      </g>
     </svg>
   </body>
 </html>
