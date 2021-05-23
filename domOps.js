@@ -12,6 +12,24 @@ function removeObjectFromDOM(obj) {
 	// TODO
 }
 
+const getSize = (mass, type) => ({
+	ship: 50,
+	well: mass
+})[type]
+
+function renderObject({domRef, physics, sprite}) {
+	const size = getSize(physics.mass, sprite)
+	const attributes = {
+		x: physics.position[0] - (size / 2),
+		y: physics.position[1] - (size / 2),
+		width: size,
+		height: size,
+	}
+	Object.keys(attributes).forEach(k => {
+		domRef.setAttributeNS("http://www.w3.org/2000/svg", k, attributes[k])
+	})
+}
+
 const mouseToMass = x => x / 50
 
 const clampMass = x => Math.max(Math.min(x, MASS_MAX), MASS_MIN)

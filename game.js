@@ -150,7 +150,9 @@ function gameTick() {
 			}
 
 			// update sprites
-
+			for (let object of objects) {
+				renderObject(object);
+			}
 		}
 	}
 }
