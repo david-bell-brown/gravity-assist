@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <rect id="Artboard1" x="0" y="0" width="1000" height="1000"/>
+    <g id="Artboard11" serif:id="Artboard1">
+        <g id="ship">
+            <path d="M472,224L424,272L424,320L472,392L568,392L616,320L616,272L568,224L472,224Z" style="fill:rgb(218,218,218);"/>
+            <path d="M400,368L400,416L448,440L592,440L640,416L640,368L568,344L472,344L400,368Z" style="fill:rgb(35,0,155);"/>
+            <path d="M424,272L448,200L448,248L424,272Z" style="fill:rgb(175,0,0);"/>
+            <path d="M616,272L592,248L592,200L616,272Z" style="fill:rgb(175,0,0);"/>
+            <path d="M640,200L592,200L592,224L640,200Z" style="fill:rgb(255,0,0);"/>
+            <path d="M402.4,200L448,224L448,200L402.4,200Z" style="fill:rgb(255,0,0);"/>
+            <path d="M594.182,352.727L568,392L472,392L445.818,352.727L472,344L568,344L594.182,352.727Z" style="fill:rgb(162,157,237);"/>
+            <path d="M496,356L484,368L484,392L556,392L556,368L544,356L496,356Z" style="fill:rgb(174,1,186);"/>
+            <path d="M496,356L496,332L472,308L472,284L496,260L544,260L568,284L568,308L544,332L544,356L532,356L532,368L508,368L508,356L496,356Z" style="fill:white;"/>
+            <path d="M496,308L496,284L508,272L508,308L496,308Z" style="fill:rgb(78,62,64);"/>
+            <path d="M532,272L532,308L544,308L544,284L532,272Z" style="fill:rgb(78,62,64);"/>
+            <path d="M496,356L508,332L508,356L496,356Z" style="fill:rgb(78,62,64);"/>
+            <path d="M508,356L520,332L520,356L508,356Z" style="fill:rgb(78,62,64);"/>
+            <path d="M520,356L532,332L532,356L520,356Z" style="fill:rgb(78,62,64);"/>
+            <path d="M532,356L544,332L544,356L532,356Z" style="fill:rgb(78,62,64);"/>
+            <path d="M448,272L472,236L484,236L460,272L448,272Z" style="fill:white;"/>
+            <path d="M472,272L496,236L508,236L484,272L472,272Z" style="fill:white;"/>
+            <path d="M436,428L448,440L436,440L436,428Z" style="fill:rgb(255,0,0);"/>
+            <path d="M484,428L496,440L484,440L484,428Z" style="fill:rgb(255,0,0);"/>
+            <path d="M544,440L556,428L556,440L544,440Z" style="fill:rgb(255,0,0);"/>
+            <path d="M592,440L604,428L604,440L592,440Z" style="fill:rgb(255,0,0);"/>
+            <path d="M628,428L628,416L640,416L628,428Z" style="fill:rgb(255,0,0);"/>
+            <path d="M640,380L640,392L628,392L640,380Z" style="fill:rgb(255,0,0);"/>
+            <path d="M628,356L628,368L616,368L628,356Z" style="fill:rgb(255,0,0);"/>
+            <path d="M412,368L412,356L424,368L412,368Z" style="fill:rgb(255,0,0);"/>
+            <path d="M400,392L400,380L412,392L400,392Z" style="fill:rgb(255,0,0);"/>
+            <path d="M412,416L412,428L400,416L412,416Z" style="fill:rgb(255,0,0);"/>
+        </g>
+        <text x="268.245px" y="558.711px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:109.96px;fill:white;">Y<tspan x="331.493px 392.648px " y="558.711px 558.711px ">ou</tspan> lasted</text>
+        <text x="422.124px" y="700px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:164.168px;fill:white;">10</text>
+        <text x="311.645px" y="798.691px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:111.684px;fill:white;">seconds</text>
+        <text x="91.084px" y="177.955px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:167.526px;fill:white;">Game Over</text>
+        <rect x="300" y="850" width="425" height="100" style="fill:white;"/>
+        <text x="421.864px" y="925px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:69.802px;">Again?</text>
+    </g>
+</svg>

@@ -76,6 +76,11 @@ function start() {
 	addObjectToDOM(objects[1], 1);
 
 	game.lastTick = Date.now();
+
+	gameRoot.addEventListener('mousedown', mouseDownHandler)
+	gameRoot.addEventListener('mousemove', mouseMoveHandler)
+	gameRoot.addEventListener('mouseup', mouseUpHandler)
+
 	requestAnimationFrame(gameTick);
 }
 

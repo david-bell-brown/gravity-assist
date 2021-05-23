@@ -1,4 +1,6 @@
 const gameRoot = document.getElementById('root');
+const startScreen = document.getElementById('start-screen');
+const endScreen = document.getElementById('end-screen');
 let input = {
 }
 
@@ -57,13 +59,13 @@ const mouseToMass = x => x / 50
 const clampMass = x => Math.max(Math.min(x, MASS_MAX), MASS_MIN)
 
 gameRoot.addEventListener('click', e => {
-	if(e.target && e.target.id == 'hud-start') {
-		e.target.parentElement.removeChild(e.target)
+	if(e.target && e.target.id == 'start-button') {
+		gameRoot.removeChild(startScreen)
 		start()
 	}
 })
 
-gameRoot.addEventListener('mousedown', e => {
+function mouseDownHandler(e) {
 	input.mouseDown = true
 
 	if(e.target && e.target.dataset.type === 'well') {
@@ -74,9 +76,9 @@ gameRoot.addEventListener('mousedown', e => {
 		input.mouseStart = [e.clientX, e.clientY]
 		console.log(input.target)
 	}
-})
+}
 
-gameRoot.addEventListener('mousemove', e => {
+function mouseMoveHandler(e) {
 	if(input.mouseDown && input.target) {
 		let mouseDelta = [e.clientX - input.mouseStart[0], e.clientY - input.mouseStart[1]]
 		let magnitude = 0
@@ -87,9 +89,9 @@ gameRoot.addEventListener('mousemove', e => {
 		}
 		objects[input.target].physics.mass = clampMass(magnitude + input.targetMass)
 	}
-})
+}
 
-gameRoot.addEventListener('mouseup', e => {
+function mouseUpHandler(e) {
 	input = {}
 	unpause()
-})
+}
