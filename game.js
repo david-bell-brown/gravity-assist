@@ -190,10 +190,13 @@ function acceleration(obj1, obj2) {
 	let diffY = obj1.physics.position[1] - obj2.physics.position[1];
 	let masslessAccel = G / (Math.pow(diffX, 2) + Math.pow(diffY, 2));
 	let angle = Math.atan(diffY / diffX);
+	if (diffY < 0) {
+		angle += Math.PI;
+	}
 	let xAccel = masslessAccel * Math.cos(angle);
 	let yAccel = masslessAccel * Math.sin(angle);
-	obj2.physics.acceleration[0] += -1 * obj1.physics.mass * xAccel;
-	obj2.physics.acceleration[1] += -1 * obj1.physics.mass * yAccel;
-	obj1.physics.acceleration[0] += obj2.physics.mass * xAccel;
-	obj1.physics.acceleration[1] += obj2.physics.mass * yAccel;
+	obj2.physics.acceleration[0] += obj1.physics.mass * xAccel;
+	obj2.physics.acceleration[1] += obj1.physics.mass * yAccel;
+	obj1.physics.acceleration[0] += -1 * obj2.physics.mass * xAccel;
+	obj1.physics.acceleration[1] += -1 * obj2.physics.mass * yAccel;
 }
