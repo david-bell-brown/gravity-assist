@@ -32,7 +32,7 @@ function removeObjectFromDOM(obj) {
 
 const getSize = (mass, type) => ({
 	ship: 50,
-	well: mass
+	well: mass + 50
 })[type]
 
 function renderObject({domRef, physics, sprite}) {
@@ -60,7 +60,7 @@ gameRoot.addEventListener('mousedown', e => {
 	input.mouseDown = true
 
 	if(e.target && e.target.dataset.type === 'well') {
-		game.paused = true
+		pause()
 		input.target = e.target.dataset.id
 		input.targetMass = objects[input.target].physics.mass
 		// input.targetMass = 50
@@ -84,5 +84,5 @@ gameRoot.addEventListener('mousemove', e => {
 
 gameRoot.addEventListener('mouseup', e => {
 	input = {}
-	game.paused = false
+	unpause()
 })
