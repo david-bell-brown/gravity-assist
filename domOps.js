@@ -44,7 +44,7 @@ function renderObject({domRef, physics, sprite}) {
 		height: size,
 	}
 	Object.keys(attributes).forEach(k => {
-		domRef.setAttributeNS("http://www.w3.org/2000/svg", k, attributes[k])
+		domRef.setAttribute(k, attributes[k])
 	})
 }
 
@@ -78,8 +78,7 @@ gameRoot.addEventListener('mousemove', e => {
 		} else {
 			magnitude = mouseDelta[1] * -1
 		}
-		objects[target].physics.mass = clampMass(magnitude + input.targetMass)
-		// document.getElementById("hud-score").innerHTML = clampMass(magnitude + input.targetMass)
+		objects[input.target].physics.mass = clampMass(magnitude + input.targetMass)
 	}
 })
 
