@@ -86,7 +86,6 @@ function gameTick() {
 			// score increases with time!
 			game.score += delta;
 			game.lastTick = now;
-			requestAnimationFrame(gameTick);
 			// assume constant acceleration over delta and update physics
 			for (let object of objects) {
 				const p = object.physics.position;
@@ -159,14 +158,16 @@ function gameTick() {
 				}
 			}
 
-			// update sprites
+			// update score
+			renderScore(game.score)
+
+		} else { // paused
+			// update sprites for changes to mass
 			for (let object of objects) {
 				renderObject(object);
 			}
-
-			// update score
-			renderScore(game.score)
 		}
+		requestAnimationFrame(gameTick);
 	}
 }
 
